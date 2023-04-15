@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    environment {
+       username= 'manisha'
+    }
+    parameters {
+        string(name: 'person', description:"who are you?")
+        booleanparam(name: 'isfemale', description:"")
+        choice(name: 'city', choices:['jaipur', 'pune'],description:"")
+    }
+    stages {
+        stage ('run A command') {
+            steps {
+                // bat
+                echo 'date'
+                echo 'pwd'
+            }
+        }
+        stage ('environment variables') {
+            environment {
+                username = 'simbuoscar'
+            }
+            steps {
+                //bat
+                echo  "${username}"
+            }
+        }
+        stage('parameters') { 
+            steps {
+                // bat
+                echo 'deploy on test'  
+                 echo  "${username}"
+            }
+        }
+        stage ('deploy on prod') {
+            steps {
+                // bat
+                echo12 'deploy on prod'
+            }
+        }
+    }
+    post{
+        always {
+            echo 'I will always say hello again!'
+        }
+        failure{
+            echo 'failure'
+        }
+        success{
+            echo 'success'
+        }
+    }
