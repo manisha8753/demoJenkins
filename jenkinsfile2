@@ -1,0 +1,43 @@
+pipeline{
+    agent{
+        label "node"
+    }
+    stages{
+        stage("echo a line"){
+            steps{
+                echo 'this is step one'
+            }
+        }
+             stage("run a command"){
+            steps{
+                echo 'pwd'
+            }
+        }            
+             stage("c"){
+            steps{
+                echo "========executing A========"
+            }
+        }       
+             stage("d"){
+            steps{
+                echo "========executing A========"
+            }
+        }     
+             stage("e"){
+            steps{
+                echo "========executing A========"
+            }
+        }  
+    }      
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
+                }
+            }
+        }
